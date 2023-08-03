@@ -1,0 +1,54 @@
+#Exercício 1
+'''
+from statistics import mean
+
+l_notas=[]
+print("Digite '-1' para o resultado")
+x=float(input("Digite a nota do 1º aluno: "))
+while x!=-1:
+    l_notas.append(x)
+    x=float(input(f"Digite a nota do {len(l_notas)+1}º aluno: "))
+print(f"A média da turma é: {mean(l_notas)}\nA quantidade de alunos é: {len(l_notas)}")
+'''
+#Exercício 2
+'''
+from statistics import mean
+
+l_par=[]
+print("Digite '0' para sair")
+x=float(input("Digite o número: "))
+while x!=0:
+    if x%2==0:
+        l_par.append(x)
+    x=float(input("Digite o número: "))
+if len(l_par) !=0:
+    print(f"A média é: {mean(l_par)}\nOs valores pares são:{l_par}")
+else:
+    print("Não foi digitado número par")
+'''
+#Exercício 3
+'''
+l_list=[]
+print("Digite '0' para o resultado")
+x=int(input("Digite o número: "))
+while x!=0:
+    l_list.append(x)
+    x=int(input("Digite o número: "))
+print(f"O menor valor digitado é: {min(l_list)}")
+'''
+#Exercício 4
+'''
+from statistics import mean
+l_altura=[]
+l_genero=[]
+print("Digite '0' para sair")
+altura=float(input("Digite a altura da 1º pessoa: "))
+while altura!=0:
+    l_altura.append(altura)
+    genero=input("Digite o gênero da pessoa. 'm' para masculino e 'f' para feminino: ")
+    l_genero.append(genero)
+    altura=float(input(f"Digite a altura da {len(l_genero)+1}º pessoa: "))
+
+print(f"Maior altura: {max(l_altura)}   Menor altura: {min(l_altura)}\nQtd masculino: {l_genero.count('m')}   Qtd feminino: {l_genero.count('f')}")
+print(f"A média de altura foi: {mean(l_altura)}\nA porcentagem de homens é: {l_genero.count('m')/len(l_genero)*100}%")
+'''
