@@ -1,0 +1,80 @@
+class veiculo:
+    def __init__(self,modelo,ano=0,valor=0.0):
+        self.modelo=modelo
+        self.ano=ano
+        self.valor=valor
+
+    def get_modelo(self):
+        return self.modelo
+    def set_modelo(self,novo_modelo):
+        self.modelo=novo_modelo
+    
+    def get_ano(self):
+        return self.ano
+    
+    def set_ano(self,novo_ano):
+        self.ano=novo_ano
+
+    
+    def get_valor(self):
+        return self.valor
+    def set_valor(self,novo_valor):
+        if novo_valor>0:
+            self.valor=novo_valor
+        else:
+            print("O valor à ser atualizado não pode ser negativo")
+
+    def mostrar_dados(self):
+        print("Modelo:",self.get_modelo())
+        print("Ano:",self.get_ano())
+        print("Valor:",self.get_valor())
+
+    def retorna_dados(self):
+        dados=f"{self.get_modelo()}, {self.get_ano()}, {self.get_valor()}"
+        return dados
+    
+    def aumenta_valor(self):
+        aumento=float(input("Digite em reais o valor que será acresentado ao carro: "))
+        self.valor=self.get_valor()+aumento
+        print("O novo valor do carro é:",self.get_valor(),"reais")
+
+    def get_qtd_veiculos():
+        return qtd_veiculo()
+    
+
+if __name__=='__main__':
+
+    qtd_veiculo=0
+    
+    if veiculo+1:
+        qtd_veiculo=qtd_veiculo+1
+    
+    carro1=veiculo("Audi A3",2006,275000)
+    carro2=veiculo("BMW X3",2015,411000)
+    carro3=veiculo("Citroen C3",2003,73000)
+    
+    print("Carro 1")
+    carro1.mostrar_dados()
+
+    carro1.set_valor(200000)
+    print("\nValor atualizado do carro 1:",carro1.get_valor())
+
+    print("\nCarro 2:")
+    print(carro2.retorna_dados())
+    carro2.set_valor(-5000)
+
+    print("\nCarro 3")
+    carro3.mostrar_dados()
+    carro3.aumenta_valor()
+
+    carro4=veiculo("HB20",2022)
+    print("\nCarro 4:")
+    carro4.mostrar_dados()
+
+    carro5=veiculo("Ferrari")
+    print("\nCarro 5: ")
+    carro5.mostrar_dados()
+
+    carro6=veiculo("Celta",valor=20000)
+    print("\nCarro 6: ")
+    carro6.mostrar_dados()
