@@ -1,0 +1,66 @@
+from datetime import date
+data_atual= date.today()
+class pessoa:
+
+    def __init__(self,nome,peso,altura,ano_nasciemnto=2000):
+        self.nome=nome
+        self.peso=peso
+        self.altura=altura
+        self.ano_nascimento=ano_nasciemnto
+    def get_nome(self):
+        return self.nome
+    def set_nome(self,novo_nome):
+        if type(novo_nome)!=str:
+            print("O nome não pode ser um número")
+        else:
+            self.nome=novo_nome
+    def get_ano(self):
+        return self.ano_nascimento
+    def set_ano(self,novo_ano):
+        self.ano_nascimento=novo_ano
+    def imc(self):
+        return (f"{self.peso/(self.altura*self.altura):.2f}")
+    def __str__(self):
+        s=f"{self.nome,self.peso,self.ano_nascimento}"
+        return s
+    def calcula_idade(self):
+        return data_atual.year-self.ano_nascimento
+    
+    def retorna_mais_velho(self,obj):
+        if self.ano_nascimento>obj.ano_nascimento:
+            print("A pessoa mais velha é:",obj.nome)
+        elif self.ano_nascimento==obj.ano_nascimento:
+            print("As duas pessoas nasceram no mesmo ano.")
+        else:
+            print("A pessoa mais velha é:",self.nome)
+                  
+
+
+if __name__=="__main__":
+
+    
+    pessoa1=pessoa("Carlos",85,1.78,1998)
+    pessoa2=pessoa("Clara",65,1.61,1995)
+    pessoa3=pessoa("João",71,1.65)
+
+    print(pessoa1,"\n",pessoa2)
+
+    print("\nPessoa 1:")
+    print(pessoa1.get_nome())
+    pessoa1.set_ano(2005)
+    print(pessoa1.get_ano())
+    print("")
+    pessoa2.set_nome("Ana")
+    pessoa2.set_nome(156481)
+    print("\npessoa 2: ")
+    print(pessoa2.__str__())
+    print("IMC:",pessoa2.imc())
+
+    print("\nPessoa 3:")
+    print(pessoa3.__str__())
+    print("IMC:",pessoa3.imc())
+
+    pessoa1.set_ano(2000)
+    print("A idade da pessoa 1:",pessoa1.calcula_idade())
+
+    pessoa3.retorna_mais_velho(pessoa2)
