@@ -1,0 +1,73 @@
+import math
+class point:
+    def __init__(self,x=0,y=0):
+        self.x=x
+        self.y=y
+    
+    def __str__(self):
+        s=f"{self.x,self.y}"
+        return s
+    
+    def get_x(self):
+        return self.x
+    def set_x(self,novo_x):
+        if novo_x==str:
+            print("Precisa ser um número")
+        else:
+            self.x=novo_x
+    def get_y(self):
+        return self.y
+    def set_y(self,novo_y):
+        if novo_y==str:
+            print("Precisa ser um número")
+        else:
+            self.y=novo_y
+    def distancia(self,ponto2):
+        return math.sqrt((self.x-ponto2.x)**2 + pow((self.y-ponto2.y),2))
+    
+    def mostra_mais_longe(self,ponto2):
+        if self.distancia(origem)>ponto2.distancia(origem):
+            print("O ponto mais longe da origem é:",self)
+        else:
+            print("O ponto mais longe da origem é:",ponto2)
+    
+    def retorna_mais_longe(self,ponto2):
+        if self.distancia(origem)>ponto2.distancia(origem):
+            return self
+        else:
+            return ponto2
+
+    def mostra_ponto_medio(self,ponto2):
+        m=f"({(self.x+ponto2.x)/2},{(self.y+ponto2.y)/2})"
+        print("O ponto médio entre os dois pontos é:",m)
+    def retorna_obj_ponto_medio(self,ponto2):
+        return point((self.x+ponto2.x)/2,(self.y+ponto2.y)/2)
+
+
+if __name__=="__main__":
+    
+    origem=point()
+    p1=point()
+    p2=point(2,3)
+    print("Ponto 1:",p1,"\nPonto 2:",p2)
+    p3=point(3)
+    p4=point(y=5)
+    print("Ponto 3:",p3,"\nPonto 4:",p4,"\n")
+    print("Distância entre o ponto 2 e a origem:",p2.distancia(origem))
+    print("Distância entre o ponto 4 e a origem:",p4.distancia(origem))
+    print("Distância entre o ponto 2 e o ponto 3:",p2.distancia(p3))
+    print("Distância entre o ponto 2 e o ponto 4:",p2.distancia(p4))
+    
+    print("\n")
+
+    p2.mostra_mais_longe(p4)
+    print("O ponto mais longe da origem é:",p4.retorna_mais_longe(p2))
+
+    print("\n")
+
+    p2.mostra_ponto_medio(p4)
+
+    print("\n")
+
+    p5=p2.retorna_obj_ponto_medio(p4)
+    print("Ponto 5:",p5)
