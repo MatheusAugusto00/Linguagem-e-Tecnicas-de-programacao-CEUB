@@ -1,0 +1,73 @@
+class Funcionario:
+    def __init__(self,cpf,nome,salario=0.0):
+        self.cpf=cpf
+        self.nome=nome
+        self.salario=salario
+
+    def get_cpf(self):
+        return self.cpf
+    def set_cpf(self,novo_cpf):
+        self.cpf=novo_cpf
+    def get_nome(self):
+        return self.nome
+    def set_nome(self,novo_nome):
+        self.nome=novo_nome
+    def get_salario(self):
+        return self.salario
+    def set_salario(self,novo_salario):
+        self.salario=novo_salario
+    def __str__(self):
+        return f"CPF: {self.cpf} - Nome: {self.nome} - Salário: {self.salario}"
+    def bonificação(self):
+        return self.salario * 0.1
+
+class Gerente(Funcionario):
+    def __init__(self,cpf,nome,salario,senha,qtd_fun):
+        self.senha=senha
+        self.qtd_fun=qtd_fun
+        super().__init__(cpf,nome,salario)
+    def get_senha(self):
+        return self.senha
+    def set_senha(self,nova_senha):
+        self.senha=nova_senha
+    def get_qtd_fun(self):
+        return self.qtd_fun
+    def set_qtf_fun(self,novo_qtd_fun):
+        self.qtd_fun=novo_qtd_fun
+    def __str__(self):
+        return super().__str__()+ f" - Senha: {self.senha} - Quantidade de funcionários gerenciados: {self.qtd_fun}"
+    def autentica(self):
+        senha=input("Digite a senha: ")
+        if senha==self.senha:
+            print("Acesso permitido")
+        else:
+            print("Acesso negado")
+
+
+
+if __name__=='__main__':
+    f1=Funcionario("123","Paulo",1000.00)
+    f2=Funcionario("124","Carlos")
+    print(f"Funcionario 1:")
+    print("CPF: ",f1.get_cpf(),"\nNome: ",f1.get_nome(),"\nSalário: ",f1.get_salario())
+    print("\nFuncionario 2:\n",f2)
+    g1=Gerente("125","Marcos",10000.00,"Marcos123",2)
+    g2=Gerente("126","Pedro",8000.00,"Pedro123",1)
+    print("\nGerente 1:")
+    print(g1)
+    print("")
+    g1.autentica()
+
+    print("\nGerente 2:")
+    print(g2)
+    print('')
+    g2.set_salario(7500.00)
+    print("Novo salário do gerente 2: ",g2.get_salario())
+    g2.autentica()
+
+    print("Bonificação do funcionário 1:",f1.bonificação())
+    print("Bonificação do gerente 1:",g1.bonificação())
+    print("\nFuncionário 1:")
+    print(vars(f1))
+    print("\nGerente 1:")
+    print(g1.__dict__)
