@@ -1,0 +1,62 @@
+class veiculo:
+    def __init__(self,valor,modelo,quilometragem):
+        self.valor=valor
+        self.modelo=modelo
+        self.quilometragem=quilometragem
+    def get_valor(self):
+        return self.valor
+    def set_valor(self,novo_valor):
+        self.valor=novo_valor
+    def get_modelo(self):
+        return self.modelo
+    def set_modelo(self,novo_modelo):
+        self.modelo=novo_modelo
+    def get_quilometragem(self):
+        return self.quilometragem
+    def set_quilometragem(self,nova_quilometragem):
+        self.quilometragem=nova_quilometragem
+    def __str__(self):
+        return f"Valor={self.valor} Modelo={self.modelo} KM={self.quilometragem} "
+    def atualiza_valor(self,add):
+        if add==0:
+            print("O valor não pode ser zero")
+        else:
+            self.valor=self.valor+add
+
+    def atualiza_valor_pct(self,pct):
+        self.valor=pct/100*self.valor + self.valor
+class carro(veiculo):
+    def __init__(self,valor,modelo,quilometragem=1,qtd_portas=4):
+        super().__init__(valor,modelo,quilometragem)
+        self.qtd_portas=qtd_portas
+    def __str__(self):
+        return super().__str__()+f"Quantidade de portas={self.qtd_portas}"
+
+class moto(veiculo):
+    def __init__(self,valor,modelo,quilometragem,cilindradas=150):
+        super().__init__(valor,modelo,quilometragem)
+        self.cilindradas=cilindradas
+    def __str__(self):
+        return super().__str__()+f"Cilindradas={self.cilindradas}"
+
+
+if __name__=="__main__":
+    c1=carro(99000.00,"Civic",1000,4)
+    c2=carro(2,"UNO",35000)
+    c3=carro(10,"Ferrari")
+    print(c1)
+    print(c2)
+    print(c3)
+    m1=moto(2000,"hornet",0,600)
+    m2=moto(25500.00,"BIZ",10000)
+    print(m1)
+    print(m2)
+    print("\n",vars(c1))
+    print(vars(m1))
+    print("\n",c2.__dict__)
+    print(m2.__dict__)
+    c2.atualiza_valor(15000)
+    m1.atualiza_valor_pct(10)
+    c3.atualiza_valor(0)
+    print(c2.get_valor())
+    print(m1.get_valor())
