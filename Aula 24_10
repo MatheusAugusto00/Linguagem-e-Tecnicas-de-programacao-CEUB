@@ -1,0 +1,95 @@
+class conta:
+    def __init__(self,nome,saldo):
+        self.nome=nome
+        self.saldo=saldo
+    def get_nome(self):
+        return self.nome
+    def set_nome(self,novo_nome):
+        self.nome=novo_nome
+    def get_saldo(self):
+        return self.saldo
+    def set_saldo(self,novo_saldo):
+        self.saldo=novo_saldo
+    def __str__(self):
+        return f"Nome: {self.nome}, R$ {self.saldo}"
+    def deposito(self,valor):
+        self.saldo=self.saldo+valor
+    def retiradar_rn2(self,valor):
+        if isinstance(self,conta_pf):
+            if self.saldo-2<valor:
+                print("Seu saldo é insuficiente!!!")
+            else:
+                self.saldo=self.saldo-valor-2
+        elif isinstance(self,conta_pj):
+            if self.saldo-5<valor:
+                print("Seu saldo é insuficiente!!!")
+            else:
+                self.saldo=self.saldo-valor-5
+
+class conta_pf(conta):
+    def __init__(self,nome,saldo,genero,cpf):
+        super().__init__(nome,saldo)
+        self.genero=genero
+        self.cpf=cpf
+    def get_genero(self):
+        return self.genero
+    def set_genero(self,novo_genero):
+        self.genero=novo_genero
+    def get_cpf(self):
+        return self.cpf
+    def set_cpf(self,novo_cpf):
+        self.cpf=novo_cpf
+    def retirada(self,valor):
+        if valor>self.saldo-2:
+            print("Seu saldo é insuficiente!!!")
+        else:
+            self.saldo=self.saldo-valor-2
+
+class conta_pj(conta):
+    def __init__(self,nome,saldo,modalidade,cnpj):
+        super().__init__(nome,saldo)
+        self.modalidade=modalidade
+        self.cnpj=cnpj
+    def get_modalidade(self):
+        return self.modalidade
+    def set_modalidade(self,nova_modalidade):
+        self.modalidade=nova_modalidade
+    def get_cnpj(self):
+        return self.cnpj
+    def set_cnpj(self,novo_cnpj):
+        self.cnpj=novo_cnpj
+    def retirada(self,valor):
+        if valor>self.saldo:
+            print("Seu saldo é insuficiente!!!")
+        else:
+         self.saldo=self.saldo-valor-5
+
+if __name__=="__main__":
+    pf1=conta_pf("Grompe",1000,"Macho",9852)
+    print(pf1)
+    pj1=conta_pj("Smite",1000,"Macro",15234648)
+    print(pj1)
+
+    pf1.set_cpf(1562)
+    print(pf1.get_cpf())
+    pf1.set_genero("Fema")
+    print(pf1.get_genero())
+    
+    print(vars(pf1))
+    print(pf1.__dict__)
+
+    pj1.set_cnpj(987643)
+    print(pj1.get_cnpj())
+    pj1.set_modalidade("Micro")
+    print(pj1.get_modalidade())
+    print()
+    pf1.deposito(500)
+    print(pf1.saldo)
+    pf1.retirada(500)
+    print(pf1.saldo)
+    pj1.retirada(50)
+
+    pf1.retiradar_rn2(50)
+    print(pf1.saldo)
+    pj1.retiradar_rn2(50)
+    print(pj1.saldo)
