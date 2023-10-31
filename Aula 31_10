@@ -1,0 +1,115 @@
+class Veiculo:      
+    ct=0
+    @classmethod
+    def get_qtd_veiculo(cls):
+        return cls.ct
+    def __init__(self, valor, modelo, km=1,qtd_veiculo=1): 
+        self.valor = valor                 
+        self.modelo = modelo
+        self.km = km
+        self.qtd_veiculo=qtd_veiculo
+        Veiculo.ct +=1
+    def get_valor(self):                     
+        return self.valor
+    def set_valor(self, novo_valor):         
+        self.valor = novo_valor
+
+    def get_modelo(self):
+        return self.modelo
+    def set_modelo(self, novo_modelo):
+        self.modelo = novo_modelo
+    def get_km(self):
+        return self.km
+    def set_km(self, nova_km):
+        self.km = nova_km
+
+    def atualiza_valor(self, vlr_aumento):       
+        if vlr_aumento > 0:
+            self.valor += vlr_aumento
+
+        else:
+            print('Erro: valor negativo.')
+
+    def atualiza_valor_pct(self, pct):
+        if pct > 0:
+            self.valor = self.valor + self.valor * pct / 100
+
+        else:
+            print('Erro: porcentagem negativa.')
+    def situacao(self):
+        if self.km==0:
+            print("Veículo zero")
+        elif 0<self.km<20000:
+            print("Veículo seminovo")
+        elif self.km>20000:
+            print("Veículo usado")
+    
+    def situacao_2(self):
+        if isinstance(self,Moto):
+            if self.km==0:
+                print("Moto zero")
+            elif 0<self.km<20000:
+                print("Moto seminova")
+            elif self.km>20000:
+                print("Moto usada")
+        elif isinstance(self,Carro):
+            if self.km==0:
+                print("Carro zero")
+            elif 0<self.km<20000:
+                print("Carro seminovo")
+            elif self.km>20000:
+                print("Carro usado")
+    def ipva_2(self):
+        if isinstance(self,Moto):
+            return(self.valor * 2/100)
+        elif isinstance(self,Carro):
+            return(self.valor * 3/100 + 100)
+    def qtd_veiculos():
+        return
+
+        
+
+class Carro(Veiculo):       
+    def __init__(self, valor, modelo, km=1, qtd_portas=4):  
+        super().__init__(valor, modelo, km)  
+        self.qtd_portas = qtd_portas
+    def get_qtd_portas(self):
+        return self.qtd_portas
+    def set_qtd_portas(self, nova_qtd):
+        self.qtd_portas = nova_qtd
+
+    def __str__(self):                      
+        s = f"Valor: {self.valor:.2f}, modelo: {self.modelo}, " \
+            f"Km: {self.km}, qtd. portas: {self.qtd_portas}"
+        return s
+
+class Moto(Veiculo):          
+    def __init__(self, valor, modelo, km=1, cilindradas=0):  
+        super().__init__(valor, modelo, km)  
+        self.cilindradas = cilindradas
+    def get_cilindradas(self):
+        return self.cilindradas
+    def set_cilindradas(self, novo_valor):
+        self.cilindradas = novo_valor
+
+if __name__ == '__main__':
+    c1=Carro(35500.00,"Corsa",1000,4)
+    c2=Carro(100000000.00,"Porche",10)
+    c3=Carro(80000.10,"Jetta")
+    m1=Moto(15000.00,"XRE",0,150)
+    m2=Moto(35000.00,"Black Hawk",5)
+
+    c1.atualiza_valor_pct(14)
+    c3.atualiza_valor(5000)
+    m1.set_cilindradas(90)
+    print(c1)
+    print(c2)
+    print("Moto 1")
+    print(m1.get_modelo())
+    print(m1.get_valor(),"reais")
+    c3.set_km(25000)
+
+    c1.situacao_2()
+    m1.situacao_2()
+    c3.situacao()
+    print(Veiculo.get_qtd_veiculo())
